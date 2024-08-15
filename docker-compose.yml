@@ -1,0 +1,22 @@
+name: bewe-services
+
+services:
+  appstore:
+    restart: unless-stopped
+    build: ${HOME}/bewe/appstore/
+    container_name: bw-appstore
+    command: pnpm dev
+    volumes:
+      - ${HOME}/bewe/appstore/:/app/
+      - /app/.pnpm-store
+      - /app/node_modules
+    ports:
+      - 9005:9005
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    networks:
+      - bewe-network
+
+networks:
+  bewe-network:
+    external: true
