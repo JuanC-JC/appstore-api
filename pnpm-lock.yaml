@@ -8,12 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@types/cors':
-        specifier: ^2.8.17
-        version: 2.8.17
-      '@types/express':
-        specifier: ^4.17.21
-        version: 4.17.21
       axios:
         specifier: ^1.7.4
         version: 1.7.4
@@ -24,6 +18,12 @@ importers:
         specifier: ^4.19.2
         version: 4.19.2
     devDependencies:
+      '@types/cors':
+        specifier: ^2.8.17
+        version: 2.8.17
+      '@types/express':
+        specifier: ^4.17.21
+        version: 4.17.21
       '@types/node':
         specifier: ^22.3.0
         version: 22.3.0
