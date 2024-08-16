@@ -7,21 +7,16 @@ export class Server {
   private readonly port: string;
   private server?: http.Server;
 
-  constructor(port: string) {
+  constructor({ port, routes }: { port: string, routes: express.Router[] }) {
     this.app = express();
     this.port = port;
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
-    this.app.use((_req, res, next) => { //CORS
-      res.header('Access-Control-Allow-Origin', '*');
-      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-      next();
-    });
-    // this.app.use(routes)
+    this.app.use(cors())
+    this.app.use(routes);
   }
 
-  async listen(): Promise<void> {
+  async start(): Promise<void> {
     return new Promise((resolve) => {
       this.server = this.app.listen(this.port, () => {
         console.log(`Server is running on port ${this.port}`);
