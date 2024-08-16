@@ -1,4 +1,2 @@
-.pnpm-store
-.vscode
-dist
 node_modules
+.pnpm-store

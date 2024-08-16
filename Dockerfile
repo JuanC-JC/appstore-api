@@ -3,11 +3,16 @@ FROM registry.access.redhat.com/ubi8/nodejs-20
 
 RUN npm i -g pnpm
 
+COPY package.json pnpm-lock.yaml /app/
+
 LABEL name=appstore version=latest
 
 WORKDIR /app
 
 COPY . .
+
+RUN chown -Rh $user:$user /app
+USER $user
 
 RUN pnpm install --frozen-lockfile
 
@@ -18,10 +23,6 @@ RUN pnpm install --frozen-lockfile
 # #     fi
 
 
-# RUN chown -Rh $user:$user /app
-# USER $user
+EXPOSE $PORT
 
-
-EXPOSE 9005
-
-CMD [ "pnpm", "start" ]
+CMD ["pnpm", "start"]
