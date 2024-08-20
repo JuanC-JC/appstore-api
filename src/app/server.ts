@@ -1,6 +1,7 @@
 import express from 'express';
 import * as http from 'http'
 import cors from 'cors'
+import morgan from "morgan"
 
 export class Server {
   private readonly app: express.Application;
@@ -14,6 +15,7 @@ export class Server {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(cors())
     this.app.use(routes);
+    this.app.use(morgan("dev"))
   }
 
   async start(): Promise<void> {
