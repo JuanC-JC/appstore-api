@@ -3,6 +3,6 @@ import { StatusCodes } from "http-status-codes";
 
 export class HealthController {
   run(_req: Request, res: Response) {
-    res.status(StatusCodes.OK).send({ message: "Hello World" });
+    res.status(StatusCodes.OK).send({ message: "Hello World or anything" });
   }
 }

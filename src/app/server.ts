@@ -14,7 +14,7 @@ export class Server {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(cors())
-    this.app.use(routes);
+    routes.forEach((route) => this.app.use(route));
     this.app.use(morgan("dev"))
   }
 

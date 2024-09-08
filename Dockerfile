@@ -14,7 +14,7 @@ COPY . .
 RUN chown -Rh $user:$user /app
 USER $user
 
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile --shamefully-hoist=true
 
 # # RUN if [ -d "src/common" ]; then \
 # #         echo "El directorio 'common' existe."; \
