@@ -17,7 +17,8 @@ export class MongoAccountRepository implements AccountRepository{
       name: account.name || '',
       id: id,
       path: account.path || '',
-      email: account.email || ''
+      email: account.email || '',
+      siteName: account.siteName || ''
     })
 
     return null

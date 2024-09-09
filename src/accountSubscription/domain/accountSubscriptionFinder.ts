@@ -1,12 +1,12 @@
-import { AccountRepository } from "../../account/domain/account.repository";
 import { AccountSubscription } from "./accountSubscription";
+import { AccountSubscriptionRepository } from "./accountSubscription.repository";
 
 export class AccountSubscriptionFinder {
-  constructor(private accountRepository: AccountRepository) {}
+  constructor(private accountSubscriptionRepository: AccountSubscriptionRepository) {}
 
   async run(accountId: string): Promise<AccountSubscription> {
-    const susbcription = await this.accountRepository.findSubscription(accountId);
-    if(susbcription === null) throw new Error("Account not found");
-    return susbcription
+    const subscription = await this.accountSubscriptionRepository.find(accountId);
+    if(!subscription) throw new Error("Account not found");
+    return subscription
   }
 }

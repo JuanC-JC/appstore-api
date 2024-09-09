@@ -1,14 +1,20 @@
 import { AccountRepository } from "../../account/domain/account.repository";
+import { AccountFinder } from "../../account/domain/accountFinder";
 import { AccountSubscriptionRepository } from "../../accountSubscription/domain/accountSubscription.repository";
 import { IAppstoreInstallation } from "../domain/appstore";
 import { AppstoreRepository } from "../domain/appstore.repository";
 
 export class InstallAppstoreUseCase {
+  private accountFinder: AccountFinder
+
   constructor(
     private appstoreRepository: AppstoreRepository,
     private accountRepository: AccountRepository,
     private subscriptionRepository: AccountSubscriptionRepository
-  ) { }
+  ) {
+
+    this.accountFinder = new AccountFinder(this.accountRepository)
+  }
 
   async run(app: IAppstoreInstallation): Promise<void> {
 
@@ -17,10 +23,12 @@ export class InstallAppstoreUseCase {
 
     if (accountId) {
 
-      const account = await this.accountRepository.find(accountId)
+      const account = await this.accountFinder.run(accountId)
       const subscription = await this.subscriptionRepository.find(accountId)
 
-      if (subscription.state === "active" && account.siteName) throw new Error("trying to assign site to an active account")
+      // if(!subscription) throw new Error("subscription not found")
+
+      // if (subscription.state === "active" && account.siteName) throw new Error("trying to assign site to an active account")
 
       //quien devuelve el error aca?
       // this.appstoreRepository.activeAccount(accountId)

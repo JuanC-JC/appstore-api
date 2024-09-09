@@ -6,7 +6,7 @@ export class AccountFinder {
 
   async run(accountId: string): Promise<Account> {
     const account = await this.accountRepository.find(accountId);
-    if(account === null) throw new Error("Account not found");
+    if(!account) throw new Error("Account not found");
     return account
   }
 }

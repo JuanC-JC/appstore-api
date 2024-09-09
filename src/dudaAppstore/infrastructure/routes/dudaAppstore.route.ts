@@ -23,7 +23,7 @@ const adapter = new InstallAppstoreUseCase(agencyRepository, accountRepository, 
 const controller = new appstoreController(adapter)
 
 
-dudaAppstoreRouter.post('appstore/install', controller.run.bind(controller) )
+dudaAppstoreRouter.post('/appstore/install', controller.run.bind(controller) )
 
 
 export { dudaAppstoreRouter };

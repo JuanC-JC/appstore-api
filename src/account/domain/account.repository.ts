@@ -1,5 +1,7 @@
+import { Nullable } from "../../shared/domain/Nullable";
+import { Account } from "./account";
+
 export interface AccountRepository{
-  create(data:any): Promise<any>;
-  find(id:string): Promise<any>;
-  findSubscription(id: string): Promise<any>;
+  create(data:any): Promise<Nullable<Account>>;
+  find(id:string): Promise<Nullable<Account>>;
 }
