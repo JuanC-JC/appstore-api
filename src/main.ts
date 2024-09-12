@@ -5,7 +5,6 @@ import { healthRouter } from "./app/routes/health.route";
 import { dudaAppstoreRouter } from "./dudaAppstore/infrastructure/routes/dudaAppstore.route";
 import { MongooseConection } from "./shared/infrastructure/MongooseClient";
 
-
 function main() {
 	// validateConfigEnvs()
 	const routesV1 = [healthRouter, dudaAppstoreRouter]

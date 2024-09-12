@@ -6,7 +6,7 @@ export class AccountSubscriptionFinder {
 
   async run(accountId: string): Promise<AccountSubscription> {
     const subscription = await this.accountSubscriptionRepository.find(accountId);
-    if(!subscription) throw new Error("Account not found");
+    if(!subscription) throw new Error("Account subscription not found");
     return subscription
   }
 }
